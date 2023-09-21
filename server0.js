@@ -45,7 +45,10 @@ const server = http.createServer((req, res) => {
 
     // Procesar datos del formulario cuando se completa la solicitud
     req.on('end', () => {
-
+      
+      //Guarda la data que se ingresó.
+      const postData = qs.parse(requestBody);
+      
       // Establecer encabezados de respuesta
       res.writeHead(200, { 'Content-Type': 'text/html' });
 
@@ -57,6 +60,7 @@ const server = http.createServer((req, res) => {
           <pre>${JSON.stringify(requestHeaders, null, 2)}</pre>
           <h1>Metodo: POST</h1>
           <h1>URL: /</h1>
+          <h2>${postData.campo}</h2>
         </body>
       </html>
     `;
